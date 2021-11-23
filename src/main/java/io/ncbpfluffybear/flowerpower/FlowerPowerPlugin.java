@@ -48,7 +48,7 @@ public class FlowerPowerPlugin extends JavaPlugin implements SlimefunAddon {
                 accepting.set(null, true);
             }
         } catch (IllegalAccessException | NoSuchFieldException ignored) {
-            getLogger().warning("Failed to register enchantment.");
+            getLogger().warning("注册附魔失败.");
         }
 
         registerGlow();

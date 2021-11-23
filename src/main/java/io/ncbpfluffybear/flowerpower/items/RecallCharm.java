@@ -59,7 +59,7 @@ public class RecallCharm extends SimpleSlimefunItem<ItemUseHandler> {
                 Location l = p.getLocation();
 
                 if (!Slimefun.getProtectionManager().hasPermission(p, l.getBlock(), Interaction.INTERACT_BLOCK)) {
-                    Utils.send(p, "You do not have permission to bind your Recall Charm here!");
+                    Utils.send(p, "你不能将传送符文绑定在这里!");
                     return;
                 }
 
@@ -69,12 +69,12 @@ public class RecallCharm extends SimpleSlimefunItem<ItemUseHandler> {
 
                 // Put location info into lore
                 List<String> lore = charmMeta.getLore();
-                lore.set(LORE_INDEX, Utils.color("&3Bound Location: " + l.getWorld().getName() + " @ " +
+                lore.set(LORE_INDEX, Utils.color("&3传送绑定位置: " + l.getWorld().getName() + " @ " +
                         l.getBlockX() + ", " + l.getBlockY() + ", " + l.getBlockZ()));
                 charmMeta.setLore(lore);
                 charm.setItemMeta(charmMeta);
 
-                Utils.send(p, "&aYour recall charm has been bound to your current location");
+                Utils.send(p, "&a您的传送符文已经绑定到您现在的位置了");
                 return;
             }
 
@@ -82,7 +82,7 @@ public class RecallCharm extends SimpleSlimefunItem<ItemUseHandler> {
 
             // Check if player has sufficient exp
             if (Utils.getTotalExperience(p) < TELEPORT_COST) {
-                Utils.send(p, "&cYou can not afford to teleport! Needed exp points: " + TELEPORT_COST);
+                Utils.send(p, "&c您无法传送! 您需要经验数: " + TELEPORT_COST);
                 return;
             }
 
@@ -90,7 +90,7 @@ public class RecallCharm extends SimpleSlimefunItem<ItemUseHandler> {
 
             // Charm not bound yet
             if (locationDat == null) {
-                Utils.send(p, "&cThis recall charm has not been bound yet!");
+                Utils.send(p, "&c这个传送符文还没被绑定!");
                 return;
             }
 
@@ -105,7 +105,7 @@ public class RecallCharm extends SimpleSlimefunItem<ItemUseHandler> {
             ));
             p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
 
-            Utils.send(p, "&aYou have teleported successfully");
+            Utils.send(p, "&a传送成功");
         };
     }
 }

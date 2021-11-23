@@ -20,216 +20,215 @@ import utils.ItemTags;
 public class FlowerPowerItems {
 
     public static final ItemGroup FLOWERPOWER_CATEGORY = new ItemGroup(new NamespacedKey(FlowerPowerPlugin.getInstance(),
-            "flowerpower_category"), new CustomItemStack(Material.ALLIUM, "&5Flower Power")
+            "flowerpower_category"), new CustomItemStack(Material.ALLIUM, "&5源之花")
     );
     // Multiblocks
     public static final SlimefunItemStack MAGIC_BASIN = new SlimefunItemStack("MAGIC_BASIN",
             Material.CAULDRON,
-            "&bMagic Basin",
+            "&b魔法坩埚",
             "",
-            "&7&oA basin used to make magical items",
+            "&7&o制作魔法物品的基础物品",
             "",
-            "&eRight click &7with a Magic Wand to activate",
+            "&e右键&7使用魔杖激活它",
             ItemTags.MULTIBLOCK
     );
     // Blocks
     public static final SlimefunItemStack EXPERIENCE_CAULDRON = new SlimefunItemStack("EXPERIENCE_CAULDRON",
             Material.CAULDRON,
-            "&aExperience Cauldron",
+            "&a经验之釜",
             "",
-            "&7&oA block that stores experience",
-            "&7&oUsed to make a Magic Basin",
+            "&7&o用于储存经验",
+            "&7&o也用于制作魔法物品",
             "",
-            "&eRight Click &7to deposit exp",
-            "&eSneak and Right Click &7to withdraw exp",
+            "&e右键&7储存经验",
+            "&e蹲下+右键&7取出经验",
             ItemTags.MULTIBLOCK
     );
     // Glistening Flowers
     public static final SlimefunItemStack GLISTENING_POPPY = new SlimefunItemStack("GLISTENING_POPPY",
             Material.POPPY,
-            "&aGlistening Poppy",
+            "&a闪耀的玫瑰",
             "",
-            "&7&oA glowing poppy",
+            "&7&o魔法之花的一种",
             "",
             ItemTags.CRAFTING_ITEM
     );
     public static final SlimefunItemStack GLISTENING_DANDELION = new SlimefunItemStack("GLISTENING_DANDELION",
             Material.DANDELION,
-            "&aGlistening Dandelion",
+            "&a闪耀的蒲公英",
             "",
-            "&7&oA glowing dandelion",
+            "&7&o魔法之花的一种",
             "",
             ItemTags.CRAFTING_ITEM
     );
     public static final SlimefunItemStack GLISTENING_OXEYE_DAISY = new SlimefunItemStack("GLISTENING_OXEYE_DAISY",
             Material.OXEYE_DAISY,
-            "&aGlistening Oxeye Daisy",
+            "&a闪耀的滨菊",
             "",
-            "&7&oA glowing oxeye daisy",
+            "&7&o魔法之花的一种",
             "",
             ItemTags.CRAFTING_ITEM
     );
     public static final SlimefunItemStack GLISTENING_ALLIUM = new SlimefunItemStack("GLISTENING_ALLIUM",
             Material.ALLIUM,
-            "&aGlistening Allium",
+            "&a闪耀的绒球葱",
             "",
-            "&7&oA glowing allium",
+            "&7&o魔法之花的一种",
             "",
             ItemTags.CRAFTING_ITEM
     );
     // Items
     public static final SlimefunItemStack MAGICAL_WAND = new SlimefunItemStack("MAGICAL_WAND",
             Material.BLAZE_ROD,
-            "&5Magical Wand",
+            "&5魔杖",
             "",
-            "&eRight Click &7on a Magic Basin",
-            "&7to start it",
+            "&e右键&7激活魔法坩埚",
             "",
             ItemTags.TOOL
     );
     public static final SlimefunItemStack MAGIC_CREAM = new SlimefunItemStack("MAGIC_CREAM",
             Material.MAGMA_CREAM,
-            "&6&lMagic Cream",
+            "&6&l魔法奶油",
             "",
-            "&7&oA slimy ball with magical properties",
+            "&7&o黏糊糊的,有点好吃的样子?",
             "",
             ItemTags.CRAFTING_ITEM
     );
     public static final SlimefunItemStack OVERGROWTH_SEED = new SlimefunItemStack("OVERGROWTH_SEED",
             Material.WHEAT_SEEDS,
-            "&3Flowering Seed",
+            "&3魔法花种",
             "",
             "",
-            "&eRight click &7on compatible flowers to",
-            "&7produce multiple copies of it",
+            "&e右键&7你喜欢的花朵",
+            "&7可以给予你更多的花朵",
             "",
             ItemTags.MAGICAL_ITEM
     );
     // Flower Crystals
     public static final SlimefunItemStack RED_CRYSTAL = new SlimefunItemStack("RED_CRYSTAL",
             Material.RED_GLAZED_TERRACOTTA,
-            "&cRed Crystal",
+            "&c红水晶",
             "",
-            "&7&oThis looks shiny...",
+            "&7&o它看起来闪闪发光的...",
             "",
             ItemTags.CRAFTING_ITEM
     );
     public static final SlimefunItemStack YELLOW_CRYSTAL = new SlimefunItemStack("YELLOW_CRYSTAL",
             Material.YELLOW_GLAZED_TERRACOTTA,
-            "&eYellow Crystal",
+            "&e黄水晶",
             "",
-            "&7&oThis looks shiny...",
+            "&7&o它看起来闪闪发光的...",
             "",
             ItemTags.CRAFTING_ITEM
     );
     public static final SlimefunItemStack WHITE_CRYSTAL = new SlimefunItemStack("WHITE_CRYSTAL",
             Material.WHITE_GLAZED_TERRACOTTA,
-            "&fWhite Crystal",
+            "&f白水晶",
             "",
-            "&7&oThis looks shiny...",
+            "&7&o它看起来闪闪发光的...",
             "",
             ItemTags.CRAFTING_ITEM
     );
     public static final SlimefunItemStack PURPLE_CRYSTAL = new SlimefunItemStack("PURPLE_CRYSTAL",
             Material.PURPLE_GLAZED_TERRACOTTA,
-            "&5Purple Crystal",
+            "&5紫水晶",
             "",
-            "&7&oThis looks shiny...",
+            "&7&o它看起来闪闪发光的...",
             "",
             ItemTags.CRAFTING_ITEM
     );
     public static final SlimefunItemStack MOVEMENT_SPEED_CHARM = new SlimefunItemStack("MOVEMENT_SPEED_CHARM",
             Material.SUGAR,
-            "&aMovement Speed Charm",
+            "&a移动符尘",
             "",
-            "&eRight click &cto inspect this charm",
-            "&7&oHold this charm in your offhand to run faster",
+            "&e右键&c以获得随机的速度属性",
+            "&7&o将其拿在副手可以让你健步如飞",
             "",
             ItemTags.MAGICAL_ITEM
     );
     public static final SlimefunItemStack ATTACK_SPEED_CHARM = new SlimefunItemStack("ATTACK_SPEED_CHARM",
             Material.SUGAR,
-            "&aAttack Speed Charm",
+            "&a攻速浮尘",
             "",
-            "&eRight click &cto inspect this charm",
-            "&7&oHold this charm in your offhand to attack faster",
+            "&e右键&c以获得随机的攻速属性",
+            "&7&o将其拿在副手可以让您的攻速变得更快",
             "",
             ItemTags.MAGICAL_ITEM
     );
     public static final SlimefunItemStack FLY_SPEED_CHARM = new SlimefunItemStack("FLY_SPEED_CHARM",
             Material.SUGAR,
-            "&aFly Speed Charm",
+            "&a飞翔符尘",
             "",
-            "&eRight click &cto inspect this charm",
-            "&7&oHold this charm in your offhand to fly faster",
+            "&e右键&c以获得随机的飞行速度属性",
+            "&7&o将其拿在副手可以让您的飞行速度变得更快",
             "",
             ItemTags.MAGICAL_ITEM
     );
     public static final SlimefunItemStack DAMAGE_CHARM = new SlimefunItemStack("DAMAGE_CHARM",
             Material.SUGAR,
-            "&aDamage Charm",
+            "&a攻击符尘",
             "",
-            "&eRight click &cto inspect this charm",
-            "&7&oHold this charm in your offhand to deal more damage",
+            "&e右键&c以获得随机的攻击伤害属性",
+            "&7&o将其拿在副手可以增强您的攻击力",
             "",
             ItemTags.MAGICAL_ITEM
     );
     public static final SlimefunItemStack HEALTH_CHARM = new SlimefunItemStack("HEALTH_CHARM",
             Material.SUGAR,
-            "&aHealth Charm",
+            "&a生命符尘",
             "",
-            "&eRight click &cto inspect this charm",
-            "&7&oHold this charm in your offhand to gain more hearts",
+            "&e右键&c以获得随机的生命上限属性",
+            "&7&o将其拿在副手可以增加您的生命上限",
             "",
             ItemTags.MAGICAL_ITEM
     );
     public static final SlimefunItemStack EXPERIENCE_TOME = new SlimefunItemStack("EXPERIENCE_TOME",
             Material.ENCHANTED_BOOK,
-            "&eExperience Tome &a(0 / 1000000)",
+            "&e经验之书 &a(0 / 1000000)",
             "",
-            "&7&oCapable of holding massive amounts of experience",
+            "&7&o它能够储存大量经验",
             "",
-            "&eRight click &7to insert exp",
-            "&eSneak and Right Click &7to extract exp",
-            "&eLeft click &7to perform actions in bulk",
+            "&e右键&7储存经验",
+            "&e&e蹲下+右键&7取出经验",
+            "&e左键&7进行批量操作",
             "",
             ItemTags.MAGICAL_ITEM
     );
     public static final SlimefunItemStack INFINITY_APPLE = new SlimefunItemStack("INFINITY_APPLE",
             new CustomItemStack(SlimefunUtils.getCustomHead("99a79d7e5d1ba739ab4471643e744ef781f7c1d4ea52efc99168d6cb5732326")),
-            "&eInfinity Apple",
+            "&e无尽苹果",
             "",
-            "&7&oConverts experience to food",
+            "&7&o将经验转化为饥饿值",
             "",
-            "&eRight Click &7to eat",
+            "&e右键&7食用",
             "",
-            "&aCost: " + InfinityApple.EXP_PER_CONSUME + " exp point per " + InfinityApple.FOOD_PER_CONSUME + " hunger",
+            "&a消耗: " + InfinityApple.EXP_PER_CONSUME + " 经验值每 " + InfinityApple.FOOD_PER_CONSUME + " 饥饿值",
             ItemTags.MAGICAL_ITEM
     );
     public static final SlimefunItemStack INFINITY_BANDAGE = new SlimefunItemStack("INFINITY_BANDAGE",
             Material.PAPER,
-            "&cInfinity Bandage",
+            "&c无尽绷带",
             "",
-            "&7&oConverts experience to health",
+            "&7&o将经验转化为生命值",
             "",
-            "&eRight Click &7to heal",
+            "&e右键&7治疗",
             "",
-            "&aCost: " + InfinityBandage.EXP_PER_CONSUME + " exp points per " + InfinityBandage.HEALTH_PER_CONSUME + " health",
+            "&a消耗: " + InfinityBandage.EXP_PER_CONSUME + " 经验值每 " + InfinityBandage.HEALTH_PER_CONSUME + " 生命值",
             ItemTags.MAGICAL_ITEM
     );
     public static final SlimefunItemStack RECALL_CHARM = new SlimefunItemStack("RECALL_CHARM",
             Material.ENDER_EYE,
-            "&5Recall Charm",
+            "&5传送符文",
             "",
-            "&7&oTeleports you back to a remembered location",
-            "&7&oin exchange for experience...",
+            "&7&o将您传送回标记地点",
+            "&7&并消耗经验",
             "",
-            "&eSneak and Right Click &7to bind current location",
-            "&eRight Click &7to teleport",
+            "&e蹲下+右键&7绑定当前位置",
+            "&e右键&7传送",
             "",
-            "&3Bound Location: None",
+            "&3绑定地点: 无",
             "",
-            "&aCost: " + RecallCharm.TELEPORT_COST + " exp points per teleport",
+            "&a消耗: " + RecallCharm.TELEPORT_COST + " 经验值每传送一次",
             ItemTags.MAGICAL_ITEM
     );
 

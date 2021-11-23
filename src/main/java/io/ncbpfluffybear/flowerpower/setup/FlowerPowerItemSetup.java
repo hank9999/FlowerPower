@@ -38,7 +38,7 @@ public class FlowerPowerItemSetup {
 
     // Placeholder item for magic basin item frames
     private static final CustomItemStack basinFrame = new CustomItemStack(Material.ITEM_FRAME, null,
-            "&7Place on the side of the Experience Cauldron");
+            "&7请摆在经验之釜四周的物品展示框中");
     private static final List<Pair<SlimefunItemStack, Material>> allFlowers = new ArrayList<>(Arrays.asList(
             new Pair<>(FlowerPowerItems.GLISTENING_POPPY, Material.POPPY),
             new Pair<>(FlowerPowerItems.GLISTENING_DANDELION, Material.DANDELION),
