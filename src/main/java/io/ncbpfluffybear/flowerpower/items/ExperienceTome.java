@@ -1,11 +1,11 @@
 package io.ncbpfluffybear.flowerpower.items;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.ncbpfluffybear.flowerpower.FlowerPowerPlugin;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -29,7 +29,7 @@ public class ExperienceTome extends SlimefunItem implements Listener {
     private static final int MAX_EXP = 1000000;
     private static final int EXP_TRANSFER_RATE = 10;
 
-    public ExperienceTome(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public ExperienceTome(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
         Utils.registerEvents(this);
@@ -37,10 +37,16 @@ public class ExperienceTome extends SlimefunItem implements Listener {
 
     @EventHandler
     private void onTomeUse(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+
         ItemStack tome = e.getItem();
 
         // Check if item is a tome
         if (!isItem(tome)) {
+            return;
+        }
+
+        if (!this.canUse(p, true)) {
             return;
         }
 
@@ -51,7 +57,6 @@ public class ExperienceTome extends SlimefunItem implements Listener {
         }
 
         ItemMeta tomeMeta = tome.getItemMeta();
-        Player p = e.getPlayer();
         int tomeExp = PersistentDataAPI.getInt(tomeMeta, expAmount, 0);
 
         // Exp extraction
@@ -69,7 +74,7 @@ public class ExperienceTome extends SlimefunItem implements Listener {
             if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
                 transferExp = tomeExp;
             } else {
-                transferExp = EXP_TRANSFER_RATE;
+                transferExp = Math.min(tomeExp, EXP_TRANSFER_RATE);
             }
 
             // Add Exp to player
@@ -79,13 +84,7 @@ public class ExperienceTome extends SlimefunItem implements Listener {
 
         } else {
 
-            // Check if exp can be added to the tome
-            if (tomeExp >= MAX_EXP) {
-                Utils.send(p, "&cThis Experience Tome is full!");
-                return;
-            }
-
-            if (p.getTotalExperience() == 0) {
+            if (Utils.getTotalExperience(p) == 0) {
                 Utils.send(p, "&cYou don't have enough exp!");
                 return;
             }
@@ -94,9 +93,20 @@ public class ExperienceTome extends SlimefunItem implements Listener {
 
             // Left click is max insert
             if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
-                transferExp = p.getTotalExperience();
+                transferExp = Utils.getTotalExperience(p);
             } else {
-                transferExp = EXP_TRANSFER_RATE;
+                transferExp = Math.min(Utils.getTotalExperience(p), EXP_TRANSFER_RATE);
+            }
+
+            // If overflow, decrease to fill tome
+            if (transferExp + tomeExp > MAX_EXP) {
+                transferExp = MAX_EXP - tomeExp;
+            }
+
+            // Check if exp can be added to the tome
+            if (tomeExp + transferExp > MAX_EXP || transferExp == 0) {
+                Utils.send(p, "&cThis Experience Tome is full!");
+                return;
             }
 
             // Add Exp to player

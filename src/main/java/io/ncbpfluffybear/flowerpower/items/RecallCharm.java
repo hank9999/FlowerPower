@@ -1,19 +1,21 @@
 package io.ncbpfluffybear.flowerpower.items;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.ncbpfluffybear.flowerpower.FlowerPowerPlugin;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import utils.Utils;
@@ -34,7 +36,7 @@ public class RecallCharm extends SimpleSlimefunItem<ItemUseHandler> {
     private static final int LORE_INDEX = 7;
     private static final NamespacedKey location = new NamespacedKey(FlowerPowerPlugin.getInstance(), "location");
 
-    public RecallCharm(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public RecallCharm(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
 
@@ -56,6 +58,11 @@ public class RecallCharm extends SimpleSlimefunItem<ItemUseHandler> {
             if (p.isSneaking()) {
                 Location l = p.getLocation();
 
+                if (!Slimefun.getProtectionManager().hasPermission(p, l.getBlock(), Interaction.INTERACT_BLOCK)) {
+                    Utils.send(p, "You do not have permission to bind your Recall Charm here!");
+                    return;
+                }
+
                 // Store location info into PDC
                 PersistentDataAPI.setString(charmMeta, location, l.getWorld().getUID() + "_" +
                         l.getBlockX() + "_" + l.getBlockY() + "_" + l.getBlockZ());
@@ -74,7 +81,7 @@ public class RecallCharm extends SimpleSlimefunItem<ItemUseHandler> {
             // Teleport player
 
             // Check if player has sufficient exp
-            if (p.getTotalExperience() < TELEPORT_COST) {
+            if (Utils.getTotalExperience(p) < TELEPORT_COST) {
                 Utils.send(p, "&cYou can not afford to teleport! Needed exp points: " + TELEPORT_COST);
                 return;
             }
