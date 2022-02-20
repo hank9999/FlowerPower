@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.ncbpfluffybear</groupId>
     <artifactId>FlowerPower</artifactId>
-    <version>10 zh-CN</version>
+    <version>12 zh-CN</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.17-R0.1-SNAPSHOT</version>
+            <version>1.18.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 

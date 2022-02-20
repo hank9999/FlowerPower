@@ -115,18 +115,13 @@ public class ExperienceCauldron extends SlimefunItem implements Listener {
                 return;
             }
 
-            // Retrieve all items in the itemframes
-            List<ItemStack> frameItems = getFrameItems(itemFrames);
+            // Get crafting output
+            ItemStack output = getOutput(getFrameItems(itemFrames));
 
-            for (ItemStack[] recipeInputs : RecipeType.getRecipeInputList(MAGIC_BASIN)) {
-
-                ItemStack output = checkRecipe(frameItems, recipeInputs);
-
-                if (output == null) {
-                    continue;
-                }
-
+            // A recipe worked!
+            if (output != null) {
                 craft(b, itemFrames, output);
+                return;
             }
 
             // None of the recipes worked
@@ -192,7 +187,7 @@ public class ExperienceCauldron extends SlimefunItem implements Listener {
     private static void changeLevel(Block b, int i) {
         Material mat = b.getType();
 
-        if (Constants.SERVER_VERSION.contains("1.17") && mat == Material.CAULDRON) {
+        if (useNewCauldrons() && mat == Material.CAULDRON) {
             b.setType(Material.WATER_CAULDRON);
             Levelled cauldron = (Levelled) b.getBlockData();
             cauldron.setLevel(i);
@@ -202,7 +197,7 @@ public class ExperienceCauldron extends SlimefunItem implements Listener {
             Levelled cauldron = (Levelled) b.getBlockData();
 
             // Empty
-            if (i == -1 && cauldron.getLevel() == 1 && Constants.SERVER_VERSION.contains("1.17")) {
+            if (i == -1 && cauldron.getLevel() == 1 && useNewCauldrons()) {
                 b.setType(Material.CAULDRON);
             } else {
                 cauldron.setLevel(cauldron.getLevel() + i);
@@ -216,7 +211,7 @@ public class ExperienceCauldron extends SlimefunItem implements Listener {
     private static int getCauldronLevel(Block b) {
         Material mat = b.getType();
 
-        if (Constants.SERVER_VERSION.contains("1.17")) {
+        if (useNewCauldrons()) {
             if (mat == Material.CAULDRON) {
                 return 0;
             } else if (mat == Material.WATER_CAULDRON) {
@@ -229,6 +224,10 @@ public class ExperienceCauldron extends SlimefunItem implements Listener {
         }
 
         return 0;
+    }
+
+    private static boolean useNewCauldrons() {
+        return Constants.SERVER_VERSION.contains("1.17") || Constants.SERVER_VERSION.contains("1.18");
     }
 
     /**
@@ -291,6 +290,20 @@ public class ExperienceCauldron extends SlimefunItem implements Listener {
         }
 
         // Recipe sizes did not match
+        return null;
+    }
+
+    private ItemStack getOutput(List<ItemStack> frameItems) {
+        for (ItemStack[] recipeInputs : RecipeType.getRecipeInputList(MAGIC_BASIN)) {
+
+            ItemStack output = checkRecipe(frameItems, recipeInputs);
+
+            // Structured this way to return first valid recipe in case of duplicates
+            if (output != null) {
+                return output;
+            }
+        }
+
         return null;
     }
 

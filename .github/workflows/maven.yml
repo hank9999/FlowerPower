@@ -35,5 +35,5 @@ jobs:
         if: success()
         with:
           name: FlowerPower zh-CN
-          path: target/FlowerPower v10 zh-CN.jar
+          path: target/FlowerPower v12 zh-CN.jar
 # 注意要和打包出来的一致
